@@ -1,1 +1,1 @@
-## My learning process of secrets in kubernetes cluster k8s
+## My learning process of learning kubernetes k3s.
