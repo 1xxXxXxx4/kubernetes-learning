@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: networking 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: networking
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alipne
+  namespace: networking
+spec:
+  selector:
+    matchLabels:
+      app: alipne
+  template:
+    metadata:
+      labels:
+        app: alipne
+    spec:
+      containers:
+      - name: alipne
+        image: alpine:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 20000
+---
